@@ -1,0 +1,17 @@
+On the PHP backend you will need to route all traffic back to index.php
+
+Find the configs file and do something like
+
+DocumentRoot "C:/xampp/public"
+<Directory "C:/xampp/public">
+
+    Options Indexes FollowSymLinks Includes ExecCGI
+    AllowOverride All
+    Require all granted
+
+	RewriteEngine On
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^(.*)$ index.php/$1 [PT,L,QSA]
+	
+</Directory>
